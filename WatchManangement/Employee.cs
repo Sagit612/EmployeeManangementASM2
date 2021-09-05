@@ -6,7 +6,7 @@ namespace EmployeeManagement
 {
     class Employee
     {
-        public string id { get; set; }
+        public string id;
         public string name;
         public int age;
         public string gender;
@@ -24,6 +24,5 @@ namespace EmployeeManagement
             this.gender = gender;
             this.address = address;
         }
-
     }
 }

@@ -9,26 +9,19 @@ namespace EmployeeManagement
         {
             ManagerEmployee managerEmployee = new ManagerEmployee();
             IO.PrintMenu();
-            int input = 0;
-            string inputEmployee = "";
-            //Employee engineer1 = new Engineer("GCD28290", "quoc", 18, "male", "17 dien bien phu", "software");
-            //managerEmployee.AddEmployee(engineer1);
-            //Employee engineer2 = new Engineer("GCD201870", "quoc", 18, "male", "17 dien bien phu", "software");
-            //managerEmployee.AddEmployee(engineer2);
-            //Employee engineer3 = new Engineer("GCD291248", "quoc", 18, "male", "17 dien bien phu", "software");
-            //managerEmployee.AddEmployee(engineer3);
-            //Employee engineer4 = new Engineer("GCD212734", "quoc", 18, "male", "17 dien bien phu", "software");
-            //managerEmployee.AddEmployee(engineer4);
-            //Employee engineer5 = new Engineer("GCD123494", "quoc", 18, "male", "17 dien bien phu", "software");
-            //managerEmployee.AddEmployee(engineer5);
-            //Employee Worker6 = new Worker("ASD684335", "quoc", 18, "male", "17 dien bien phu", 7);
-            //managerEmployee.AddEmployee(Worker6);
-            //Employee Worker7 = new Worker("ASD589430", "quoc", 18, "male", "17 dien bien phu", 8);
-            //managerEmployee.AddEmployee(Worker7);
-            //Employee Worker8 = new Worker("ASD683934", "quoc", 18, "male", "17 dien bien phu", 9);
-            //managerEmployee.AddEmployee(Worker8);
-
-            while (true)
+            int input = MenuOption.INIT;
+            string inputEmployee = MenuOption.INPUT_EMPLOYEE;
+            Employee engineer1 = new Engineer("GCD123456", "Quốc", 18, "Male", "17 Dien Bien Phu", "Da Nang");
+            managerEmployee.AddEmployee(engineer1);
+            Employee engineer2 = new Engineer("GCD234567", "Đức", 18, "Male", "16 Ly Thai To", "Da Nang");
+            managerEmployee.AddEmployee(engineer2);
+            Employee engineer3 = new Engineer("GCD345678", "Nhan", 18, "Male", "03 Ham Nghi", "Da Nang");
+            managerEmployee.AddEmployee(engineer3);
+            Employee worker1 = new Worker("ASD234567", "Dũng", 18, "Male", "02 Hoang Hoa Tham", 5);
+            managerEmployee.AddEmployee(worker1);
+            Employee worker2 = new Worker("ASD123456", "Trí", 18, "Male", "02 Tran Van On", 5);
+            managerEmployee.AddEmployee(worker2);
+            while (input != MenuOption.EXIT)
             {
                 input = IO.EnterMenuOptions();
                 switch (input)
@@ -36,13 +29,13 @@ namespace EmployeeManagement
                     case MenuOption.ADD_EMPLOYEES:
                         do
                         {
-                            inputEmployee = IO.EnterOfficer();
+                            inputEmployee = IO.EnterEmployee();
                             switch (inputEmployee)
                             {
                                 case MenuOption.ADD_ENGINEER:
                                     IO.EnterEngineer();
                                     Employee engineer = new Engineer
-                                        (IO.EnterId(managerEmployee),
+                                        (IO.EnterAndCheckId(managerEmployee),
                                          IO.EnterName(),
                                          IO.EnterAge(),
                                          IO.EnterGender(),
@@ -53,7 +46,7 @@ namespace EmployeeManagement
                                 case MenuOption.ADD_WORKER:
                                     IO.EnterWoker();
                                     Employee worker = new Worker
-                                        (IO.EnterId(managerEmployee),
+                                        (IO.EnterAndCheckId(managerEmployee),
                                          IO.EnterName(),
                                          IO.EnterAge(),
                                          IO.EnterGender(),
@@ -75,9 +68,6 @@ namespace EmployeeManagement
                     case MenuOption.REMOVE_EMPLOYEE:
                         IO.ShowMessage(managerEmployee.RemoveEmployeeById(IO.EnterId()));
                         break;
-                    case MenuOption.SEARCH_BY_ID:
-                        IO.ToScreen(managerEmployee.SearchEmployeeById(IO.EnterId()));
-                        break;
                     case MenuOption.UPDATE_ENGINEER:
                         IO.ShowMessage(managerEmployee.UpdateEngineerById
                             (IO.EnterId(),
@@ -98,15 +88,14 @@ namespace EmployeeManagement
                              IO.EnterLevel()
                             ));
                         break;
-                    case MenuOption.COUNT_EMPLOYEES:
-                        IO.ShowNumberOfficer(managerEmployee.CountEmployees());
-                        break;
                     case MenuOption.EXIT:
                         return;
                     default:
                         break;
                 }
+                
             }
         }
+
     }
 }

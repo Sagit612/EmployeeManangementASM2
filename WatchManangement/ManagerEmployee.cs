@@ -8,7 +8,7 @@ namespace EmployeeManagement
 {
     class ManagerEmployee
     {
-        public List<Employee> _employees;
+        private List<Employee> _employees;
         
 
         public ManagerEmployee()
@@ -33,7 +33,7 @@ namespace EmployeeManagement
 
         public bool RemoveEmployeeById(string id)
         {
-            Employee employeeInList = _employees.FirstOrDefault(ofs => ofs.id.Equals(id));
+            Employee employeeInList = _employees.FirstOrDefault(epls => epls.id.Equals(id));
             if (employeeInList != null)
             {
                 _employees.Remove(employeeInList);
@@ -41,21 +41,14 @@ namespace EmployeeManagement
             }
             else return false;
         }
-        public bool CheckEmployeeById(string id)
+        public bool CheckIdOfEmployees(string id)
         {
             Employee employeeInList = _employees.FirstOrDefault(x => x.id.Equals(id));
-            //employeeInList.ToString();
             if (employeeInList == null)
             {
                 return false;
             }
             return true;
-        }
-        public string SearchEmployeeById(string id)
-        {   
-            Employee employeeInList = _employees.FirstOrDefault(o => o.id.Equals(id));
-            if (employeeInList != null) return employeeInList.ToString();
-            return "Not exist";
         }
         public bool UpdateEngineerById(string id, string name, int age, string gender,
             string address, string branch)
@@ -82,10 +75,6 @@ namespace EmployeeManagement
             workerInList.address = address;
             workerInList.level = level;
             return true;
-        }
-        public int CountEmployees()
-        {
-            return _employees.Count;
         }
     }
 }

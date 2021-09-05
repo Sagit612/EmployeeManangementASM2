@@ -20,9 +20,8 @@ namespace EmployeeManagement
 
         public override string ToString()
         {
-            string result = $"Engineer --- ID: {id} | Full Name: {name} | Age: {age} | " +
+             return $"Engineer --- ID: {id} | Full Name: {name} | Age: {age} | " +
                 $"Gender: {gender} | Address: {address} | Branch: {branch} \n";
-            return result;
         }
     }
 }
